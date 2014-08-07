@@ -11,18 +11,27 @@
 @implementation StringCheese
 
 - (NSString *) favoriteCheeseStringWithCheese:(NSString *)cheeseName {
-    /* WORK HERE */
-    return nil;
-}
+    NSString *sentence = @"My favorite cheese is ";
+    NSString *fullSentence = [NSString stringWithFormat:@"%@%@.",sentence, cheeseName];
+    return fullSentence;
+    
+    }
 
 - (NSString *) cheeseNameWithoutCheeseSuffix:(NSString *)cheeseName {
-    /* WORK HERE */
-    return nil;
+    NSString *newCheese = cheeseName;
+    newCheese = [newCheese stringByReplacingOccurrencesOfString:@" cheese" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [newCheese length])];
+    return newCheese;
 }
 
 - (NSString *) numberOfCheesesStringWithCheeseCount:(NSUInteger)cheeseCount {
-    /* WORK HERE */
-    return nil;
+    NSString *stringCheeseHa = [NSString stringWithFormat:@"%ld cheese", (long)cheeseCount];
+    NSString *multiStringCheeseHa = [NSString stringWithFormat:@"%ld cheeses", (long)cheeseCount];
+    if (cheeseCount == 1)
+            {
+            return stringCheeseHa;
+            } else {
+            return multiStringCheeseHa;
+            }
 }
 
 @end
