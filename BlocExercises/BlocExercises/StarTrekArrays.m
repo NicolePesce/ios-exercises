@@ -11,22 +11,27 @@
 @implementation StarTrekArrays
 
 - (NSArray *) arrayOfStarTrekCharactersFromString:(NSString *)characterString {
-    /* WORK HERE */
-    return @[];
+    NSArray *myArray = [characterString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@";"]];
+    return myArray;
 }
 
 - (NSString *) stringOfStarTrekCharactersFromArray:(NSArray *)characterArray {
-    /* WORK HERE */
-    return @"";
+    NSString *returnedString = [characterArray componentsJoinedByString:@";"];
+    return returnedString;
 }
 
 - (NSArray *) alphabeticallySortedStarTrekCharactersFromArray:(NSArray *)characterArray {
-    /* WORK HERE */
-    return @[];
+    NSMutableArray *copiedArray = [characterArray mutableCopy];
+    [copiedArray sortUsingSelector: @selector(compare:)];
+    return copiedArray ;
 }
 
 - (BOOL) characterArrayContainsWorf:(NSArray *)characterArray {
-    /* WORK HERE */
+    for (NSString *myItem in characterArray) {
+        if ([myItem  isEqual: @"Worf, son of Mogh, slayer of Gowron"]) {
+            return YES;
+            }
+        }
     return NO;
 }
 
