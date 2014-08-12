@@ -11,37 +11,43 @@
 @implementation NumberHandler
 
 - (NSNumber *) numberThatIsTwiceAsBigAsNumber:(NSNumber *)number {
-    int firstNumber = [number intValue];
-    int secondNumber = 2;
-    NSNumber *result = [NSNumber numberWithInt:firstNumber *secondNumber];
-    return result;
+    number = @([number intValue] * 2);
+    return number;
 }
 
 - (NSArray *) arrayOfNumbersBetweenNumber:(NSInteger)number andOtherNumber: (NSInteger)otherNumber {
-    NSMutableArray *array = [NSMutableArray array];
+    if (number == otherNumber) {
+        return @[@(number)];
+    }
+    
+    NSInteger lowNumber, highNumber;
+    
     if (number < otherNumber) {
-    for(NSInteger i = number; i <= otherNumber; i++) {
-            NSNumber *newNumber = [NSNumber numberWithInt:i];
-            [array addObject: newNumber];
-            }
-        } else {
-            for(NSInteger i = number; i >= otherNumber; i--) {
-                NSNumber *newNumber = [NSNumber numberWithInt:i];
-                [array addObject: newNumber];
-                }
-            }
-        return array;
-        }
+        lowNumber = number;
+        highNumber = otherNumber;
+    } else {
+        lowNumber = otherNumber;
+        highNumber = number;
+    }
+    
+    NSMutableArray *returnArray = [NSMutableArray array];
+    
+    for (NSInteger i = lowNumber; i <= highNumber; i++) {
+        [returnArray addObject:@(i)];
+    }
+    
+    return returnArray;
+}
+
 
 - (NSInteger) lowestNumberInArray:(NSArray *)arrayOfNumbers {
-    //NSSortDescriptor *lowestNumber = [[NSSortDescriptor sortDescriptorWithKey:nil ascending:YES];
-    //NSArray *sortedArray = [arrayOfNumbers sortedArrayUsingDescriptors:@[lowestNumber]];
-    //NSArray *sortedResult = [sortedArray sor]
-    //return sortedArray;
-    NSSortDescriptor *lowest = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES];
-    NSArray *sortResult = [arrayOfNumbers sortedArrayUsingDescriptors:@[lowest]];
-    NSLog(@"%@", sortResult);
-    NSNumber *result = [NSNumber numberWithInteger:[[sortResult firstObject] integerValue]];
-    return [result integerValue];
+    NSInteger num = [arrayOfNumbers[0] integerValue];
+    for (NSInteger i = 0; i < [arrayOfNumbers count]; i++) {
+    if (num > [arrayOfNumbers[i] integerValue])
+            {
+        num = [arrayOfNumbers[i] integerValue];
+                }
+        }
+    return num;
 }
 @end
